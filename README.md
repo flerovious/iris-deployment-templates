@@ -1,4 +1,4 @@
-# 🪻 Irisheimer
+# Irisheimer
 
 Irisheimer is a specialized CLI tool designed to streamline the deployment of InterSystems IRIS applications using Flask WSGI servers on AWS infrastructure. This project aims to provide a simple, one-command solution that sets up your application to be deployment-ready from the start.
 
@@ -8,7 +8,7 @@ The primary goal of Irisheimer is to eliminate the complex, time-consuming setup
 
 ## Features
 
-- Generates a `main.py` file with Pulumi AWS configuration tailored for InterSystems IRIS and Flask
+- Generates a `__main__.py` file with Pulumi AWS configuration tailored for InterSystems IRIS and Flask
 - Customizes the configuration with your provided Git repository URL
 - Sets up EC2 instance, VPC, security groups, and other necessary AWS resources
 - Configures the EC2 instance to run a Flask WSGI server optimized for InterSystems IRIS
@@ -18,23 +18,25 @@ The primary goal of Irisheimer is to eliminate the complex, time-consuming setup
 
 - Python 3.7+
 - pip
-- [Poetry](https://python-poetry.org/docs/#installation) (for development)
+- [Pulumi](https://www.pulumi.com/docs/get-started/install/) (for deploying the generated configuration)
 - Basic familiarity with InterSystems IRIS and Flask
 
 ## Installation
 
-Install Irisheimer directly from PyPI:
+You can install Irisheimer directly from the GitHub repository:
 
 ```bash
-pip install irisheimer
+pip install git+https://github.com/flerovious/iris-deployment-templates.git@iris#egg=irisheimer
 ```
 
-For development:
+This command installs the package from the `iris` branch of the repository.
+
+For development, you can clone the repository and install it in editable mode:
 
 ```bash
-git clone https://github.com/your-username/irisheimer.git
-cd irisheimer
-poetry install
+git clone -b iris https://github.com/flerovious/iris-deployment-templates.git
+cd iris-deployment-templates
+pip install -e .
 ```
 
 ## Usage
@@ -78,13 +80,13 @@ The EC2 instance's user data script:
 After generating `main.py`:
 
 1. Review and adjust the configuration if needed.
-2. Ensure [Pulumi](https://www.pulumi.com/docs/get-started/install/) is installed and configured.
+2. Ensure Pulumi is installed and configured.
 3. Run `pulumi up` in the directory containing `main.py` to deploy your infrastructure.
 4. Once deployed, your IRIS Flask application will be running on AWS and accessible via the EC2 instance's public IP or DNS.
 
 ## Contributing
 
-Contributions to improve Irisheimer are welcome! Please feel free to submit a Pull Request.
+Contributions to improve Irisheimer are welcome! Please feel free to submit a Pull Request to the [GitHub repository](https://github.com/flerovious/iris-deployment-templates).
 
 ## License
 
@@ -92,4 +94,4 @@ Contributions to improve Irisheimer are welcome! Please feel free to submit a Pu
 
 ## Support
 
-If you encounter any issues or have questions about deploying InterSystems IRIS applications with Irisheimer, please open an issue on the GitHub repository.
+If you encounter any issues or have questions about deploying InterSystems IRIS applications with Irisheimer, please open an issue on the [GitHub repository](https://github.com/flerovious/iris-deployment-templates/issues).
