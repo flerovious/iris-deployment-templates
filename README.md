@@ -1,4 +1,4 @@
-# Irisheimer
+# 🪻 Irisheimer
 
 Irisheimer is a specialized CLI tool designed to streamline the deployment of InterSystems IRIS applications using Flask WSGI servers on AWS infrastructure. This project aims to provide a simple, one-command solution that sets up your application to be deployment-ready from the start.
 
@@ -26,17 +26,25 @@ The primary goal of Irisheimer is to eliminate the complex, time-consuming setup
 You can install Irisheimer directly from the GitHub repository:
 
 ```bash
-pip install git+https://github.com/flerovious/iris-deployment-templates.git@iris#egg=irisheimer
+pip install git+https://github.com/flerovious/iris-deployment-templates.git#egg=irisheimer
 ```
 
-This command installs the package from the `iris` branch of the repository.
+This command installs the package from the main branch of the repository.
 
 For development, you can clone the repository and install it in editable mode:
 
 ```bash
-git clone -b iris https://github.com/flerovious/iris-deployment-templates.git
+git clone https://github.com/flerovious/iris-deployment-templates.git
 cd iris-deployment-templates
 pip install -e .
+```
+
+If you prefer using Poetry for development:
+
+```bash
+git clone https://github.com/flerovious/iris-deployment-templates.git
+cd iris-deployment-templates
+poetry install
 ```
 
 ## Usage
