@@ -16,7 +16,7 @@ The primary goal of Irisheimer is to eliminate the complex, time-consuming setup
 
 ## Prerequisites
 
-- Python 3.7+
+- Python 3.6+
 - pip
 - [Pulumi](https://www.pulumi.com/docs/get-started/install/) (for deploying the generated configuration)
 - Basic familiarity with InterSystems IRIS and Flask

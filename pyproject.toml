@@ -6,7 +6,7 @@ authors = ["Varun Swaminathan <85042815+flerovious@users.noreply.github.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.12"
+python = "^3.6"
 click = "^8.1.7"
 
 
