@@ -1,9 +1,0 @@
-services:
-  fastapi-app:
-    build:
-      context: ./app
-      dockerfile: Dockerfile
-    ports:
-      - "8000:8000"
-    volumes:
-      - ./app:/app

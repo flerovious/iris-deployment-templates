@@ -1,49 +1,97 @@
-# Deploy Your Iris Apps with the Push of a Button
+# Irisheimer
 
-## Introduction
+Irisheimer is a specialized CLI tool designed to streamline the deployment of InterSystems IRIS applications using Flask WSGI servers on AWS infrastructure. This project aims to provide a simple, one-command solution that sets up your application to be deployment-ready from the start.
 
-Welcome to our Iris App Deployment tool! This repository contains templates and scripts to help you quickly deploy your Iris applications to various cloud providers with minimal setup.
+## Purpose
+
+The primary goal of Irisheimer is to eliminate the complex, time-consuming setup process typically associated with deploying InterSystems IRIS applications on AWS. By automating the generation of Pulumi configurations, Irisheimer allows developers to focus on their application logic rather than infrastructure setup.
 
 ## Features
 
-- One-click deployment
-- Support for multiple cloud providers:
-  - AWS
-  - GCP
-  - Azure
-- Choice of server frameworks:
-  - FastAPI
-  - Flask
+- Generates a `__main__.py` file with Pulumi AWS configuration tailored for InterSystems IRIS and Flask
+- Customizes the configuration with your provided Git repository URL
+- Sets up EC2 instance, VPC, security groups, and other necessary AWS resources
+- Configures the EC2 instance to run a Flask WSGI server optimized for InterSystems IRIS
+- Ensures all necessary ports for IRIS are opened in the security group
 
-## Getting Started
+## Prerequisites
 
-1. Clone this repository
-2. Run our setup script
-3. Choose your cloud provider and server framework
-4. Push the deploy button!
-
-## Requirements
-
-- Python 3.7+
+- Python 3.6+
 - pip
-- A valid account with your chosen cloud provider
+- [Pulumi](https://www.pulumi.com/docs/get-started/install/) (for deploying the generated configuration)
+- Basic familiarity with InterSystems IRIS and Flask
+
+## Installation
+
+You can install Irisheimer directly from the GitHub repository:
+
+```bash
+pip install git+https://github.com/flerovious/iris-deployment-templates.git@iris#egg=irisheimer
+```
+
+This command installs the package from the `iris` branch of the repository.
+
+For development, you can clone the repository and install it in editable mode:
+
+```bash
+git clone -b iris https://github.com/flerovious/iris-deployment-templates.git
+cd iris-deployment-templates
+pip install -e .
+```
 
 ## Usage
 
+To set up your InterSystems IRIS Flask application for AWS deployment:
+
 ```bash
-python deploy_iris.py --cloud [aws|gcp|azure] --server [fastapi|flask]
+irisheimer <repository-url>
 ```
+
+Replace `<repository-url>` with the URL of your Git repository containing the IRIS Flask application.
+
+Example:
+
+```bash
+irisheimer https://github.com/your-username/your-iris-flask-app.git
+```
+
+This command generates a `main.py` file in your current working directory, containing the Pulumi configuration for deploying your IRIS Flask application on AWS.
+
+## Generated Configuration
+
+The `main.py` file includes Pulumi code to create AWS resources optimized for InterSystems IRIS:
+
+- EC2 instance (sized appropriately for IRIS)
+- VPC
+- Internet Gateway
+- Public Subnet
+- Route Table
+- Security Group (with IRIS-specific ports opened)
+
+The EC2 instance's user data script:
+
+1. Updates the system
+2. Installs necessary dependencies (Git, Docker, Docker Compose)
+3. Clones your specified repository
+4. Sets up and starts your IRIS Flask application using Docker Compose
+
+## Next Steps
+
+After generating `main.py`:
+
+1. Review and adjust the configuration if needed.
+2. Ensure Pulumi is installed and configured.
+3. Run `pulumi up` in the directory containing `main.py` to deploy your infrastructure.
+4. Once deployed, your IRIS Flask application will be running on AWS and accessible via the EC2 instance's public IP or DNS.
 
 ## Contributing
 
-We welcome contributions! Please see our [CONTRIBUTING.md](CONTRIBUTING.md) for details on how to submit pull requests.
+Contributions to improve Irisheimer are welcome! Please feel free to submit a Pull Request to the [GitHub repository](https://github.com/flerovious/iris-deployment-templates).
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
+[MIT License](LICENSE)
 
 ## Support
 
-If you encounter any problems or have any questions, please open an issue in this repository.
-
-Happy deploying!
+If you encounter any issues or have questions about deploying InterSystems IRIS applications with Irisheimer, please open an issue on the [GitHub repository](https://github.com/flerovious/iris-deployment-templates/issues).
